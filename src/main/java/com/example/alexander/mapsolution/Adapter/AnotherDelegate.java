@@ -6,8 +6,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.alexander.mapsolution.R;
+import com.example.alexander.mapsolution.Utils.LogHelper;
 
 import java.util.List;
 
@@ -18,13 +20,14 @@ import butterknife.ButterKnife;
  * Created by Alexander on 05.07.2017.
  */
 
-public class AnotherDelegate implements AdapterDelegate<List<AdapterItem>> {
+public class AnotherDelegate implements AdapterDelegate<List<AdapterItem>>, OnItemClickListener<TestAnotherItem> {
 
     Integer viewType;
 
     public AnotherDelegate(Integer type) {
         this.viewType = type;
     }
+
 
 
 
@@ -44,6 +47,7 @@ public class AnotherDelegate implements AdapterDelegate<List<AdapterItem>> {
         AnotherViewHolder vh = (AnotherViewHolder) holder;
         TestAnotherItem testItem = (TestAnotherItem) items.get(position);
         vh.textView.setText(testItem.getName());
+        vh.view.setOnClickListener(v -> AnotherDelegate.this.onClick(testItem));
 
     }
 
@@ -52,10 +56,18 @@ public class AnotherDelegate implements AdapterDelegate<List<AdapterItem>> {
         return viewType;
     }
 
+    @Override
+    public void onClick(TestAnotherItem item) {
+        LogHelper.write("Click: " + item.getName());
+    }
+
     static class AnotherViewHolder extends RecyclerView.ViewHolder {
 
         @BindView(R.id.test_item)
         TextView textView;
+
+        @BindView(R.id.some)
+        View view;
 
         public AnotherViewHolder(View itemView) {
             super(itemView);

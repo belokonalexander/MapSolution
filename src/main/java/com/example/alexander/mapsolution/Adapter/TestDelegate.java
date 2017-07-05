@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.example.alexander.mapsolution.R;
+import com.example.alexander.mapsolution.Utils.LogHelper;
 
 import junit.framework.Test;
 
@@ -28,6 +29,7 @@ public class TestDelegate implements AdapterDelegate<List<AdapterItem>> {
     public TestDelegate(Integer type) {
         this.type = type;
     }
+
 
 
 

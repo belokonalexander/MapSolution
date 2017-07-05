@@ -12,6 +12,7 @@ import java.util.zip.Inflater;
 
 public interface AdapterDelegate<T> {
 
+
         /**
          * Called to determine whether this AdapterDelegate is the responsible for the given data
          * element.

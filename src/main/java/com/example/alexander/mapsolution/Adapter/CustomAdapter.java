@@ -19,6 +19,9 @@ public class CustomAdapter extends RecyclerView.Adapter {
     TestDelegate testDelegate = new TestDelegate(TEST_TYPE);
     AnotherDelegate anotherDelegate = new AnotherDelegate(ANOTHER_TYPE);
 
+
+
+
     List<AdapterItem> items;
 
     public CustomAdapter(List<AdapterItem> items) {
