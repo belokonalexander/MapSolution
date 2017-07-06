@@ -1,5 +1,6 @@
 package com.example.alexander.mapsolution.Adapter;
 
+import android.app.Activity;
 import android.support.v7.widget.RecyclerView;
 import android.view.ViewGroup;
 
@@ -16,16 +17,22 @@ public class CustomAdapter extends RecyclerView.Adapter {
     final int TEST_TYPE = 0;
     final int ANOTHER_TYPE = 1;
 
-    TestDelegate testDelegate = new TestDelegate(TEST_TYPE);
-    AnotherDelegate anotherDelegate = new AnotherDelegate(ANOTHER_TYPE);
+    TestDelegate testDelegate;
+    AnotherDelegate anotherDelegate;
 
+    Activity activity;
 
 
 
     List<AdapterItem> items;
 
-    public CustomAdapter(List<AdapterItem> items) {
+    public CustomAdapter(Activity activity, List<AdapterItem> items) {
         this.items = items;
+        this.activity = activity;
+
+         testDelegate = new TestDelegate(TEST_TYPE);
+         anotherDelegate = new AnotherDelegate(activity,ANOTHER_TYPE);
+
     }
 
     @Override

@@ -11,8 +11,7 @@ import android.view.ViewGroup;
 
 import com.example.alexander.mapsolution.Adapter.AdapterItem;
 import com.example.alexander.mapsolution.Adapter.CustomAdapter;
-import com.example.alexander.mapsolution.Adapter.TestAnotherItem;
-import com.example.alexander.mapsolution.Adapter.TestItem;
+import com.example.alexander.mapsolution.Adapter.NavigationItem;
 import com.example.alexander.mapsolution.Utils.LogHelper;
 
 import java.util.ArrayList;
@@ -42,7 +41,7 @@ public class ListFragment extends Fragment {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         ButterKnife.bind(this, view);
-        testAdapter  = new CustomAdapter(getData());
+        testAdapter  = new CustomAdapter(getActivity(), getData());
         listView.setLayoutManager(new LinearLayoutManager(getContext()));
         listView.setAdapter(testAdapter);
 
@@ -51,10 +50,19 @@ public class ListFragment extends Fragment {
     public List<AdapterItem> getData(){
         ArrayList<AdapterItem> arrayList = new ArrayList<>();
 
-        for(int i =0; i < 20; i++){
+        /*for(int i =0; i < 20; i++){
             if(i%2==0)
                 arrayList.add(new TestItem("Test " + i));
-            else arrayList.add(new TestAnotherItem("AnotherItem " + i));
+            else arrayList.add(new NavigationItem("AnotherItem " + i));
+        }
+*/
+
+        String[] names = getContext().getResources().getStringArray(R.array.name);
+        String[] lat = getContext().getResources().getStringArray(R.array.lat);
+        String[] lng = getContext().getResources().getStringArray(R.array.lng);
+
+        for(int i =0; i < names.length; i++){
+            arrayList.add(new NavigationItem(names[i], Double.valueOf(lat[i]), Double.valueOf(lng[i])));
         }
 
         LogHelper.write(" Items size: " + arrayList.size());
